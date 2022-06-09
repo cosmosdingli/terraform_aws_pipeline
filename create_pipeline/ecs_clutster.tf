@@ -37,7 +37,7 @@ resource "aws_ecs_service" "python_service" {
 
   # placement_constraints {
   #   type       = "memberOf"
-  #   expression = "attribute:ecs.availability-zone in [us-west-2a, us-west-2b]"
+  #   expression = "attribute:ecs.availability-zone in [ap-northeast-1a, ap-northeast-1c]"
   # }
 }
 
@@ -66,7 +66,7 @@ resource "aws_ecs_task_definition" "python_task" {
 
   placement_constraints {
     type       = "memberOf"
-    expression = "attribute:ecs.availability-zone in [us-west-2a, us-west-2b]"
+    expression = "attribute:ecs.availability-zone in [ap-northeast-1a, ap-northeast-1c]"
   }
 }
 
@@ -87,7 +87,7 @@ data "aws_ami" "ubuntu" {
 }
 
 resource "aws_launch_configuration" "ecs_launch_config" {
-  image_id             = "ami-072aaf1b030a33b6e" #data.aws_ami.ubuntu.id
+  image_id             = "ami-081ce1b631be2b337" #data.aws_ami.ubuntu.id
   iam_instance_profile = aws_iam_instance_profile.ecs_agent.name
   security_groups      = [aws_security_group.allow_ecs.id]
   user_data            = "#!/bin/bash\necho ECS_CLUSTER=${aws_ecs_cluster.python_app_cluster.name} >> /etc/ecs/ecs.config"

@@ -115,6 +115,6 @@ resource "aws_codepipeline" "python_app_pipeline" {
     aws_ecs_service.python_service,
     aws_ecr_repository.python_app_repo,
     aws_codecommit_repository.code_repo,
-    aws_s3_bucket.cicd_bucket,
+    # aws_s3_bucket.cicd_bucket,
   ]
 }

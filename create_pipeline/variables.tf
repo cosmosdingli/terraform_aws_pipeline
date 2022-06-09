@@ -1,12 +1,12 @@
 
 variable "aws_region" {
   description = "AWS region to launch servers."
-  default     = "us-west-2"
+  default     = "ap-northeast-1"
 }
 
 # Example of a list variable
 variable "availability_zones" {
-  default = ["us-west-2a", "us-west-2b"]
+  default = ["ap-northeast-1a", "ap-northeast-1c"]
 }
 
 variable "cidr_block" {
@@ -25,7 +25,7 @@ variable "python_project_repository_branch" {
 
 variable "artifacts_bucket_name" {
   description = "S3 Bucket for storing artifacts"
-  default     = "emeka18-cicd-artifacts-bucket"
+  default     = "my-tf-state-bucket-natsuki"
 }
 
 variable "container_port" {

@@ -2,9 +2,9 @@ terraform {
   required_version = ">= 0.12"
   # Uncomment only if you would like not to use s3 as backend
   backend "s3" {
-    bucket = "my-tf-state-bucket-emeka"
+    bucket = "my-tf-state-bucket-natsuki"
     key    = "terraform.tfstate"
-    region = "us-west-2"
+    region = "ap-northeast-1"
   }
 }
 
@@ -27,7 +27,7 @@ resource "null_resource" "image" {
        git remote add origin ${aws_codecommit_repository.code_repo.clone_url_http}
        git push -u origin master
    EOF
-    working_dir = "showcase_flask_app" #"python_app"
+    working_dir = "python_app" #"python_app"
   }
   depends_on = [
     aws_codecommit_repository.code_repo,
@@ -42,13 +42,12 @@ resource "null_resource" "clean_up" {
     command     = <<EOF
        rm -rf .git/
    EOF
-    working_dir = "showcase_flask_app" #"python_app"
+    working_dir = "python_app" #"python_app"
 
   }
 }
 
-resource "aws_s3_bucket" "cicd_bucket" {
-  bucket        = var.artifacts_bucket_name
-  acl           = "private"
-  force_destroy = true
-}
+# resource "aws_s3_bucket" "cicd_bucket" {
+#   bucket        = var.artifacts_bucket_name
+#   force_destroy = true
+# }
